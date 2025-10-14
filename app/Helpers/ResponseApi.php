@@ -4,84 +4,97 @@ namespace App\Helpers;
 
 class ResponseAPI
 {
-    public function continue()
+    public static function continue()
     {
-        return json_encode([
-            'code' => 100,
+        return response()->json([
+            'success' => true,
+            'message' => 'Request approved.',
             'data' => null,
-            'message' => 'Request approved.'
-        ]);
+        ], 100);
     }
 
-    public function switchProtocol()
+    public static function switchProtocol()
     {
-        return json_encode([
-            'code' => 101,
+        return response()->json([
+            'success' => true,
+            'message' => 'Request switch protocol.',
             'data' => null,
-            'message' => 'Request switch protocol.'
-        ]);
+        ], 101);
     }
 
-    public function success($data = null)
+    public static function success($data = null, string $message = 'Success.')
     {
-        return json_encode([
-            'code' => 200,
+        return response()->json([
+            'success' => true,
+            'message' => $message,
             'data' => $data,
-            'message' => 'Success.'
-        ]);
+        ], 200);
     }
 
-    public function dataNotfound()
+    public static function dataNotfound(array $errors = null, string $message = 'Data not found.')
     {
-        return json_encode([
-            'code' => 204,
+        return response()->json([
+            'success' => true,
+            'message' => $message,
             'data' => null,
-            'message' => 'Data not found.'
-        ]);
+            'errors' => $errors
+        ], 200);
     }
 
-    public function BadResource()
+    public static function internalServerError(array $errors = null, string $message = 'Internal server error.')
     {
-        return json_encode([
-            'code' => 301,
+        return response()->json([
+            'success' => false,
+            'message' => $message,
             'data' => null,
-            'message' => 'Bad resource.'
-        ]);
+            'errors' => $errors
+        ], 500);
     }
 
-    public function BadRequest($message = null)
+    public static function unauthorized(string $message = 'Unauthorized.')
     {
-        return json_encode([
-            'code' => 400,
+        return response()->json([
+            'success' => false,
+            'message' => $message,
             'data' => null,
-            'message' => $message
-        ]);
+        ], 401);
     }
 
-    public function UnAuthorization($message = null)
+    public static function forbidden(string $message = 'Forbidden.')
     {
-        return json_encode([
-            'code' => 401,
+        return response()->json([
+            'success' => false,
+            'message' => $message,
             'data' => null,
-            'message' => $message
-        ]);
+        ], 403);
     }
 
-    public function forbidden()
+    public static function unprocessableContent(array $errors = null, string $message = 'Unprocessable Content.')
     {
-        return json_encode([
-            'code' => 403,
+        return response()->json([
+            'success' => false,
+            'message' => $message,
             'data' => null,
-            'message' => 'Forbidden.'
-        ]);
+            'errors' => $errors
+        ], 422);
     }
 
-    public function InternalServerError()
+    public static function badResource()
     {
-        return json_encode([
-            'code' => 500,
+        return response()->json([
+            'success' => false,
+            'message' => 'Bad resource.',
             'data' => null,
-            'message' => 'Internal server error.'
-        ]);
+        ], 301);
+    }
+
+    public static function badRequest(array $errors = null, string $message = 'Bad request.')
+    {
+        return response()->json([
+            'success' => false,
+            'message' => $message,
+            'data' => null,
+            'errors' => $errors
+        ], 400);
     }
 }
