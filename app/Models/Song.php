@@ -18,5 +18,7 @@ class Song extends Model
         'beatmap_easy',
         'beatmap_normal',
         'beatmap_hard',
+        'created_at',
+        'updated_at'
     ];
 }

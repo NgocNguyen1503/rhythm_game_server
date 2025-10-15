@@ -16,5 +16,7 @@ class HighScore extends Model
         'high_score',
         'full_combo',
         'all_perfect',
+        'created_at',
+        'updated_at'
     ];
 }

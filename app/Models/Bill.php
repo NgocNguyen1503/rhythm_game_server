@@ -17,5 +17,7 @@ class Bill extends Model
         'price',
         'status',
         'expired_time',
+        'created_at',
+        'updated_at'
     ];
 }
