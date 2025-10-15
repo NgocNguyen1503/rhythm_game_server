@@ -2,7 +2,7 @@
 
 namespace App\Helpers;
 
-class ResponseAPI
+class ResponseApi
 {
     public static function continue()
     {

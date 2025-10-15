@@ -8,4 +8,7 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-Route::post('/login', [LoginController::class, 'login']);
+Route::group(['prefix' => 'auth'], function () {
+    Route::get('/google/redirect', [LoginController::class, 'redirect']);
+    Route::get('/google/callback', [LoginController::class, 'callback']);
+});

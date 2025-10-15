@@ -1,7 +1,9 @@
 <?php
 
+use App\Helpers\ResponseApi;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', fn() => ResponseApi::unauthorized())
+    ->name('login');
+
+Route::get('/auth', fn() => view('auth'));
