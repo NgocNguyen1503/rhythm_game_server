@@ -15,6 +15,7 @@ class Song extends Model
         'thumbnail',
         'price',
         'youtube_link',
+        'mp3_url',
         'beatmap_easy',
         'beatmap_normal',
         'beatmap_hard',

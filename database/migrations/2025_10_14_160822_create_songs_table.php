@@ -16,6 +16,7 @@ return new class extends Migration {
             $table->string('thumbnail')->unique();
             $table->float('price')->nullable();
             $table->string('youtube_link')->nullable();
+            $table->string('mp3_url')->nullable();
             $table->string('beatmap_easy')->nullable();
             $table->string('beatmap_normal')->nullable();
             $table->string('beatmap_hard')->nullable();
