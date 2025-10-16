@@ -12,7 +12,8 @@ use Log;
 class LoginController extends Controller
 {
 
-    public function __construct(private GoogleAuthService $googleAuthService) {
+    public function __construct(private GoogleAuthService $googleAuthService)
+    {
     }
 
     public function redirect(Request $request)
@@ -30,9 +31,10 @@ class LoginController extends Controller
             $userInfo = $this->googleAuthService->getUserInfo($accessToken);
 
             $user = User::createOrFirst(['email' => $userInfo['email']], [
-                    'name'   => $userInfo['name'],
-                    'email'  => $userInfo['email'],
-                    'avatar' => $userInfo['picture']
+                'name' => $userInfo['name'],
+                'email' => $userInfo['email'],
+                'avatar' => $userInfo['picture'],
+                'role' => 2,
             ]);
             $token = $user->createToken($user->email)->plainTextToken;
 
