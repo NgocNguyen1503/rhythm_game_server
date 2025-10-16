@@ -1,0 +1,208 @@
+{
+    "difficulty": "easy",
+    "beats": [
+        {
+            "time": 8.853,
+            "lane": 4,
+            "type": "hold",
+            "energy": 0.672,
+            "duration": 0.505
+        },
+        {
+            "time": 14.848,
+            "lane": 4,
+            "type": "hold",
+            "energy": 0.683,
+            "duration": 0.857
+        },
+        {
+            "time": 17.099,
+            "lane": 4,
+            "type": "hold",
+            "energy": 0.505,
+            "duration": 0.474
+        },
+        {
+            "time": 19.339,
+            "lane": 4,
+            "type": "hold",
+            "energy": 0.174,
+            "duration": 1.105
+        },
+        {
+            "time": 22.347,
+            "lane": 1,
+            "type": "hold",
+            "energy": 0.653,
+            "duration": 0.675
+        },
+        {
+            "time": 24.576,
+            "lane": 2,
+            "type": "hold",
+            "energy": 0.123,
+            "duration": 1.871
+        },
+        {
+            "time": 27.584,
+            "lane": 4,
+            "type": "hold",
+            "energy": 0.29,
+            "duration": 1.333
+        },
+        {
+            "time": 29.845,
+            "lane": 3,
+            "type": "hold",
+            "energy": 0.545,
+            "duration": 0.555
+        },
+        {
+            "time": 33.6,
+            "lane": 1,
+            "type": "hold",
+            "energy": 0.46,
+            "duration": 0.651
+        },
+        {
+            "time": 35.84,
+            "lane": 4,
+            "type": "hold",
+            "energy": 0.598,
+            "duration": 0.513
+        },
+        {
+            "time": 38.848,
+            "lane": 2,
+            "type": "hold",
+            "energy": 0.472,
+            "duration": 0.833
+        },
+        {
+            "time": 41.099,
+            "lane": 2,
+            "type": "hold",
+            "energy": 0.521,
+            "duration": 0.685
+        },
+        {
+            "time": 43.339,
+            "lane": 1,
+            "type": "hold",
+            "energy": 0.207,
+            "duration": 1.193
+        },
+        {
+            "time": 46.347,
+            "lane": 3,
+            "type": "hold",
+            "energy": 0.784,
+            "duration": 0.583
+        },
+        {
+            "time": 48.587,
+            "lane": 4,
+            "type": "hold",
+            "energy": 0.344,
+            "duration": 0.668
+        },
+        {
+            "time": 51.584,
+            "lane": 2,
+            "type": "hold",
+            "energy": 0.255,
+            "duration": 1.622
+        },
+        {
+            "time": 53.835,
+            "lane": 2,
+            "type": "hold",
+            "energy": 0.069,
+            "duration": 2.298
+        },
+        {
+            "time": 56.843,
+            "lane": 1,
+            "type": "hold",
+            "energy": 0.619,
+            "duration": 0.915
+        },
+        {
+            "time": 59.093,
+            "lane": 4,
+            "type": "hold",
+            "energy": 0.388,
+            "duration": 0.553
+        },
+        {
+            "time": 66.603,
+            "lane": 1,
+            "type": "hold",
+            "energy": 0.519,
+            "duration": 0.544
+        },
+        {
+            "time": 69.589,
+            "lane": 2,
+            "type": "hold",
+            "energy": 0.163,
+            "duration": 0.991
+        },
+        {
+            "time": 74.848,
+            "lane": 1,
+            "type": "hold",
+            "energy": 0.508,
+            "duration": 0.776
+        },
+        {
+            "time": 77.088,
+            "lane": 3,
+            "type": "hold",
+            "energy": 0.275,
+            "duration": 0.809
+        },
+        {
+            "time": 79.339,
+            "lane": 2,
+            "type": "hold",
+            "energy": 0.135,
+            "duration": 1.792
+        },
+        {
+            "time": 82.336,
+            "lane": 3,
+            "type": "hold",
+            "energy": 0.221,
+            "duration": 1.629
+        },
+        {
+            "time": 84.587,
+            "lane": 1,
+            "type": "hold",
+            "energy": 0.084,
+            "duration": 1.089
+        },
+        {
+            "time": 87.595,
+            "lane": 2,
+            "type": "hold",
+            "energy": 1.0,
+            "duration": 0.492
+        },
+        {
+            "time": 87.595,
+            "lane": 4,
+            "type": "hold",
+            "energy": 1.0,
+            "duration": 0.647
+        },
+        {
+            "time": 89.845,
+            "lane": 3,
+            "type": "hold",
+            "energy": 0.439,
+            "duration": 0.672
+        }
+    ]
+}
