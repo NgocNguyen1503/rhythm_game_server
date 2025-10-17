@@ -17,6 +17,7 @@ return new class extends Migration {
             $table->timestamp('email_verified_at')->nullable();
             $table->integer('role')->nullable();
             $table->integer('chapter')->nullable();
+            $table->integer('stage')->nullable();
             $table->string('password')->nullable();
             $table->string('remember_token')->nullable();
             $table->timestamps();
