@@ -14,6 +14,7 @@ return new class extends Migration {
             $table->id();
             $table->integer('user_id')->nullable();
             $table->integer('song_id')->nullable();
+            $table->integer('difficulty')->nullable();
             $table->float('high_score')->nullable();
             $table->boolean('full_combo')->nullable();
             $table->boolean('all_perfect')->nullable();

@@ -13,6 +13,7 @@ class HighScore extends Model
     protected $fillable = [
         'song_id',
         'user_id',
+        'difficulty',
         'high_score',
         'full_combo',
         'all_perfect',

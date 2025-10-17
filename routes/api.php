@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\SongController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,4 +17,7 @@ Route::group(['prefix' => 'auth'], function () {
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/list-song', [SongController::class, 'listSong']);
+    Route::get('/update-high-score', [SongController::class, 'updateHighScore']);
+
+    Route::get('/save-game', [UserController::class, 'saveGame']);
 });
