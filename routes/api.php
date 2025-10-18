@@ -21,4 +21,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/update-high-score', [SongController::class, 'updateHighScore']);
 
     Route::get('/save-game', [UserController::class, 'saveGame']);
+    Route::post('/add-new-song', [SongController::class, 'addNewSong']);
 });
