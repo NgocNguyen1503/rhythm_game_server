@@ -18,15 +18,17 @@ class GoogleAuthService
      *
      * @return string URL auth
      */
-    public function getOAuthUrl()
+    public function getOAuthUrl(string|null $state = null)
     {
-        return self::AUTH_URL .
+        $url =  self::AUTH_URL .
             '?client_id=' . env('GOOGLE_CLIENT_ID') .
             '&redirect_uri=' . env('GOOGLE_REDIRECT_URI') .
             '&response_type=code' .
             '&prompt=select_account consent' .
             '&scope=openid email profile' .
             '&access_type=offline';
+
+        return !blank($state) ? $url . '&state=' . $state : $url;
     }
 
     /**

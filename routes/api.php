@@ -13,6 +13,7 @@ Route::get('/user', function (Request $request) {
 Route::group(['prefix' => 'auth'], function () {
     Route::get('/google/redirect', [LoginController::class, 'redirect']);
     Route::get('/google/callback', [LoginController::class, 'callback']);
+    Route::get('/google/get-token', [LoginController::class, 'getToken']);
 });
 
 Route::middleware('auth:sanctum')->group(function () {

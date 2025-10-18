@@ -7,6 +7,8 @@ use App\Models\User;
 use App\Services\GoogleAuthService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Str;
 use Log;
 
 class LoginController extends Controller
@@ -18,9 +20,10 @@ class LoginController extends Controller
 
     public function redirect(Request $request)
     {
-        return ResponseApi::success(
-            $this->googleAuthService->getOAuthUrl()
-        );
+        $state = !blank($request->input('state')) ? $request->input('state') : null;
+        $url = $this->googleAuthService->getOAuthUrl($state);
+
+        return ResponseApi::success($url);
     }
 
     public function callback(Request $request)
@@ -37,6 +40,9 @@ class LoginController extends Controller
                 'role' => 2,
             ]);
             $token = $user->createToken($user->email)->plainTextToken;
+            if (!blank($params['state'])) {
+                Cache::put($params['state'], $token, now()->addMinutes(5));
+            }
 
             return redirect()->away(env('APP_URL') . "/auth?code=$token");
         } catch (\Exception $e) {
@@ -44,5 +50,14 @@ class LoginController extends Controller
 
             return ResponseApi::internalServerError();
         }
+    }
+
+    public function getToken(Request $request)
+    {
+        $params = $request->all();
+        if (!Cache::has($params['state'])) {
+            return ResponseApi::forbidden();
+        }
+        return ResponseApi::success(Cache::get($params['state']));
     }
 }
