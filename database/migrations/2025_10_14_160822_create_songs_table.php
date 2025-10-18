@@ -13,7 +13,7 @@ return new class extends Migration {
         Schema::create('songs', function (Blueprint $table) {
             $table->id();
             $table->string('name')->nullable();
-            $table->string('thumbnail')->unique();
+            $table->string('thumbnail')->nullable();
             $table->float('price')->nullable();
             $table->string('youtube_link')->nullable();
             $table->string('mp3_url')->nullable();
