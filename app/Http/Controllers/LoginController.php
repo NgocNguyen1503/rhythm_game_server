@@ -39,15 +39,16 @@ class LoginController extends Controller
                 'avatar' => $userInfo['picture'],
                 'role' => 2,
             ]);
+
             $token = $user->createToken($user->email)->plainTextToken;
-            if (!blank($params['state'])) {
+
+            if (isset($params['state']) && !blank($params['state'])) {
                 Cache::put($params['state'], $token, now()->addMinutes(5));
             }
 
-            return redirect()->away(env('APP_URL') . "/auth?code=$token");
+            return redirect()->away(env('APP_URL') . "/home?code=$token");
         } catch (\Exception $e) {
             Log::error($e->getMessage());
-
             return ResponseApi::internalServerError();
         }
     }
