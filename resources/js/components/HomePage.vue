@@ -175,9 +175,9 @@ export default {
 
 .input:focus {
     border-color: #60a5fa;
-    background-color: #252525;
+    background-color: var(--input-bg);
     outline: none;
-    box-shadow: 0 0 0 2px #2563eb40;
+    box-shadow: 0 0 0 1.5px #60a5fa;
 }
 
 /* --- Button --- */
