@@ -82,17 +82,26 @@ class SongController extends Controller
             'input' => 'required|string',
             'name' => 'required|string',
             'audio' => 'required|string',
+            'thumbnail' => 'required|file|mimes:jpg,jpeg,png',
         ]);
 
         $input = $request->input('input');
         $name = $request->input('name');
         $audio = $request->input('audio');
+        $thumbnail = $request->file('thumbnail');
 
         $publicPath = 'http://localhost:8000/songs/';
+        $savePath = public_path('songs/' . $name);
         $basePath = $publicPath . $name . '/';
 
+        if (!file_exists($savePath)) {
+            mkdir($savePath, 0777, true);
+        }
+
+        $thumbnailPath = $savePath . '/' . $name . '_thumbnail.png';
+        $thumbnail->move($savePath, $name . '_thumbnail.png');
+
         try {
-            // Call Flask API
             $response = Http::timeout(600)
                 ->withoutVerifying()
                 ->post('http://127.0.0.1:5000/generate', [
@@ -116,7 +125,6 @@ class SongController extends Controller
                 return ResponseApi::dataNotfound();
             }
 
-            // Save to database
             Song::create([
                 'name' => $data['title'],
                 'youtube_link' => $audio,
@@ -124,6 +132,7 @@ class SongController extends Controller
                 'beatmap_easy' => $basePath . 'beatmaps/' . $name . '_easy.json',
                 'beatmap_normal' => $basePath . 'beatmaps/' . $name . '_normal.json',
                 'beatmap_hard' => $basePath . 'beatmaps/' . $name . '_hard.json',
+                'thumbnail' => $basePath . $name . '_thumbnail.png',
                 'price' => $params['price'],
             ]);
 
