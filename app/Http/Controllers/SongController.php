@@ -101,8 +101,8 @@ class SongController extends Controller
             mkdir($savePath, 0777, true);
         }
 
-        $thumbnailPath = $savePath . '/' . $safeName . '_thumbnail.png';
-        $thumbnail->move($savePath, $safeName . '_thumbnail.png');
+        $thumbnailPath = $savePath . '/' . $safeName . '_thumbnail.jpg';
+        $thumbnail->move($savePath, $safeName . '_thumbnail.jpg');
 
         try {
             $response = Http::timeout(600)
@@ -135,7 +135,7 @@ class SongController extends Controller
                 'beatmap_easy' => $basePath . 'beatmaps/' . $safeName . '_easy.json',
                 'beatmap_normal' => $basePath . 'beatmaps/' . $safeName . '_normal.json',
                 'beatmap_hard' => $basePath . 'beatmaps/' . $safeName . '_hard.json',
-                'thumbnail' => $basePath . $safeName . '_thumbnail.png',
+                'thumbnail' => $basePath . $safeName . '_thumbnail.jpg',
                 'price' => $params['price'],
             ]);
 
