@@ -37,7 +37,7 @@ class SongSeeder extends Seeder
 
             DB::table('songs')->insert([
                 'name' => $name,
-                'thumbnail' => $basePath . $saveNamePath . '_thumbnail.png',
+                'thumbnail' => $basePath . $saveNamePath . '_thumbnail.jpg',
                 'mp3_url' => $basePath . $saveNamePath . '.mp3',
                 'beatmap_easy' => $basePath . 'beatmaps/' . $saveNamePath . '_easy.json',
                 'beatmap_normal' => $basePath . 'beatmaps/' . $saveNamePath . '_normal.json',
