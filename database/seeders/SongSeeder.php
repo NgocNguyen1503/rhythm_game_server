@@ -16,6 +16,12 @@ class SongSeeder extends Seeder
         'Mili - Utopiosphere',
     ];
 
+    private $saveName = [
+        'Twinkle_Twinkle_Little Star',
+        'Deemo_Pure_White',
+        'Mili_Utopiosphere',
+    ];
+
     /**
      * Run the database seeds.
      */
@@ -26,15 +32,16 @@ class SongSeeder extends Seeder
 
         for ($i = $from; $i < $from + 3; $i++) {
             $name = $this->names[$i];
-            $basePath = $publicPath . $name . '/';
+            $saveNamePath = $this->saveName[$i];
+            $basePath = $publicPath . $saveNamePath . '/';
 
             DB::table('songs')->insert([
                 'name' => $name,
-                'thumbnail' => $basePath . $name . '_thumbnail.png',
-                'mp3_url' => $basePath . $name . '.mp3',
-                'beatmap_easy' => $basePath . 'beatmaps/' . $name . '_easy.json',
-                'beatmap_normal' => $basePath . 'beatmaps/' . $name . '_normal.json',
-                'beatmap_hard' => $basePath . 'beatmaps/' . $name . '_hard.json',
+                'thumbnail' => $basePath . $saveNamePath . '_thumbnail.png',
+                'mp3_url' => $basePath . $saveNamePath . '.mp3',
+                'beatmap_easy' => $basePath . 'beatmaps/' . $saveNamePath . '_easy.json',
+                'beatmap_normal' => $basePath . 'beatmaps/' . $saveNamePath . '_normal.json',
+                'beatmap_hard' => $basePath . 'beatmaps/' . $saveNamePath . '_hard.json',
                 'price' => 0,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
