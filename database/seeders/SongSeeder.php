@@ -17,7 +17,7 @@ class SongSeeder extends Seeder
     ];
 
     private $saveName = [
-        'Twinkle_Twinkle_Little Star',
+        'Twinkle_Twinkle_Little_Star',
         'Deemo_Pure_White',
         'Mili_Utopiosphere',
     ];
