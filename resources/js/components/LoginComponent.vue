@@ -36,6 +36,14 @@ export default {
             googleIcon: "/assets/images/google.png",
         };
     },
+    mounted() {
+        const queryString = window.location.href.split('?')[1];
+        const token = new URLSearchParams(queryString).get('code');
+        if (token) {
+            sessionStorage.setItem('token', token);
+            this.$router.push('/home')
+        }
+    },
     methods: {
         async redirectToGoogle() {
             try {

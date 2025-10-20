@@ -88,7 +88,7 @@ export default {
             this.loading = true;
             this.message = "";
             try {
-                const token = localStorage.getItem("token");
+                const token = sessionStorage.getItem("token");
                 const formData = new FormData();
                 formData.append("name", this.song.name);
                 formData.append("audio", this.song.audio);

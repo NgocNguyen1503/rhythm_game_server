@@ -46,7 +46,7 @@ class LoginController extends Controller
                 Cache::put($params['state'], $token, now()->addMinutes(5));
             }
 
-            return redirect()->away(env('APP_URL') . "/home?code=$token");
+            return redirect()->away(env('APP_URL') . "/login?code=$token");
         } catch (\Exception $e) {
             Log::error($e->getMessage());
             return ResponseApi::internalServerError();
