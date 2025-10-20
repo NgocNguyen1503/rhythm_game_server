@@ -90,16 +90,19 @@ class SongController extends Controller
         $audio = $request->input('audio');
         $thumbnail = $request->file('thumbnail');
 
+        $safeName = preg_replace('/[\\\\\\/*?:"<>|]/', '_', $name);
+        $safeName = str_replace(' ', '_', $safeName);
+
         $publicPath = 'http://localhost:8000/songs/';
-        $savePath = public_path('songs/' . $name);
-        $basePath = $publicPath . $name . '/';
+        $savePath = public_path('songs/' . $safeName);
+        $basePath = $publicPath . $safeName . '/';
 
         if (!file_exists($savePath)) {
             mkdir($savePath, 0777, true);
         }
 
-        $thumbnailPath = $savePath . '/' . $name . '_thumbnail.png';
-        $thumbnail->move($savePath, $name . '_thumbnail.png');
+        $thumbnailPath = $savePath . '/' . $safeName . '_thumbnail.png';
+        $thumbnail->move($savePath, $safeName . '_thumbnail.png');
 
         try {
             $response = Http::timeout(600)
@@ -128,11 +131,11 @@ class SongController extends Controller
             Song::create([
                 'name' => $data['title'],
                 'youtube_link' => $audio,
-                'mp3_url' => $basePath . $name . '.mp3',
-                'beatmap_easy' => $basePath . 'beatmaps/' . $name . '_easy.json',
-                'beatmap_normal' => $basePath . 'beatmaps/' . $name . '_normal.json',
-                'beatmap_hard' => $basePath . 'beatmaps/' . $name . '_hard.json',
-                'thumbnail' => $basePath . $name . '_thumbnail.png',
+                'mp3_url' => $basePath . $safeName . '.mp3',
+                'beatmap_easy' => $basePath . 'beatmaps/' . $safeName . '_easy.json',
+                'beatmap_normal' => $basePath . 'beatmaps/' . $safeName . '_normal.json',
+                'beatmap_hard' => $basePath . 'beatmaps/' . $safeName . '_hard.json',
+                'thumbnail' => $basePath . $safeName . '_thumbnail.png',
                 'price' => $params['price'],
             ]);
 
