@@ -44,6 +44,7 @@ class LoginController extends Controller
 
             if (isset($params['state']) && !blank($params['state'])) {
                 Cache::put($params['state'], $token, now()->addMinutes(5));
+                return redirect('success');
             }
 
             return redirect()->away(env('APP_URL') . "/login?code=$token");

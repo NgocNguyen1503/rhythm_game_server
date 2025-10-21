@@ -29,7 +29,6 @@
 import axios from "axios";
 
 export default {
-    name: "LoginComponent",
     data() {
         return {
             thumbnailSrc: "/assets/images/login_thumbnail.png",
@@ -41,7 +40,7 @@ export default {
         const token = new URLSearchParams(queryString).get('code');
         if (token) {
             sessionStorage.setItem('token', token);
-            this.$router.push('/home')
+            this.$router.push('/home');
         }
     },
     methods: {
@@ -49,7 +48,7 @@ export default {
             try {
                 const res = await axios.get("http://localhost:8000/api/auth/google/redirect");
                 if (res.data.success && res.data.data) {
-                    window.location.href = res.data.data; // Redirect to Google login
+                    window.location.href = res.data.data;
                 } else {
                     alert("Không thể khởi tạo đăng nhập Google.");
                 }
