@@ -33,6 +33,7 @@ export default {
         return {
             thumbnailSrc: "/assets/images/login_thumbnail.png",
             googleIcon: "/assets/images/google.png",
+            clientState: ""
         };
     },
     mounted() {
@@ -44,9 +45,27 @@ export default {
         }
     },
     methods: {
+        generateClientState() {
+            const chars = "abcdefghijklmnopqrstuvwxyz0123456789";
+            const size = 8;
+            let randomString = "";
+
+            for (let i = 0; i < size; i++) {
+                const x = Math.floor(Math.random() * chars.length);
+                randomString += chars[x];
+            }
+            this.clientState = randomString;
+            sessionStorage.setItem('state', this.clientState);
+        },
         async redirectToGoogle() {
             try {
-                const res = await axios.get("http://localhost:8000/api/auth/google/redirect");
+                this.generateClientState();
+                const res = await axios.get("http://localhost:8000/api/auth/google/redirect", {
+                    params: {
+                        'state': this.clientState,
+                        'from': 'web'
+                    }
+                });
                 if (res.data.success && res.data.data) {
                     window.location.href = res.data.data;
                 } else {

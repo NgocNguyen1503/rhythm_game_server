@@ -47,12 +47,19 @@
                     {{ message }}
                 </p>
             </transition>
+            <div v-if="clientState"
+                class="backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl p-4 gap-2 flex items-center justify-center">
+                <h1 class="font-medium">Code: {{ clientState }} </h1>
+                <i class="fa-solid fa-copy cursor-pointer hover:brightness-75" @click="copy"></i>
+            </div>
         </div>
     </div>
 </template>
 
 <script>
+import { useClipboard } from "@vueuse/core";
 import axios from "axios";
+import { ref } from "vue";
 
 export default {
     data() {
@@ -62,9 +69,23 @@ export default {
             message: "",
             success: false,
             loading: false,
+            clientState: ""
         };
     },
+    mounted() {
+        if (sessionStorage.getItem('state')) {
+            this.clientState = sessionStorage.getItem('state');
+        }
+    },
     methods: {
+        copy() {
+            const source = ref(this.clientState);
+            const { text, copy, copied, isSupported } = useClipboard({ source });
+            copy();
+            if (copied.value) {
+                alert("Copy thành công!");
+            }
+        },
         onFileChange(e) {
             const file = e.target.files[0];
             this.song.thumbnail = file;

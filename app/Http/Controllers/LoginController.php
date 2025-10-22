@@ -8,8 +8,8 @@ use App\Services\GoogleAuthService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
-use Log;
 
 class LoginController extends Controller
 {
@@ -20,7 +20,16 @@ class LoginController extends Controller
 
     public function redirect(Request $request)
     {
-        $state = !blank($request->input('state')) ? $request->input('state') : null;
+        $params = $request->all();
+        if (!isset($params['from']) || blank($params['from'])) {
+            return ResponseApi::forbidden();
+        }
+        Cache::put('from', $params['from']);
+
+        if (!isset($params['state']) || blank($params['state'])) {
+            return ResponseApi::forbidden();
+        }
+        $state = $params['state'];
         $url = $this->googleAuthService->getOAuthUrl($state);
 
         return ResponseApi::success($url);
@@ -43,13 +52,21 @@ class LoginController extends Controller
             $token = $user->createToken($user->email)->plainTextToken;
 
             if (isset($params['state']) && !blank($params['state'])) {
-                Cache::put($params['state'], $token, now()->addMinutes(5));
-                return redirect('success');
+                Cache::put($params['state'], $token, now()->addHour());
             }
 
-            return redirect()->away(env('APP_URL') . "/login?code=$token");
+            $from = null;
+            if (Cache::has('from')) {
+                $from = Cache::get('from');
+            }
+            return match ($from) {
+                'web' => redirect()->away(env('APP_URL') . "/login?code=$token"),
+                'unity' => redirect('/success'),
+                default => redirect('/login')
+            };
         } catch (\Exception $e) {
             Log::error($e->getMessage());
+
             return ResponseApi::internalServerError();
         }
     }

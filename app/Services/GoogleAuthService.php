@@ -18,17 +18,16 @@ class GoogleAuthService
      *
      * @return string URL auth
      */
-    public function getOAuthUrl(string|null $state = null)
+    public function getOAuthUrl(string $state)
     {
-        $url =  self::AUTH_URL .
+        return self::AUTH_URL .
             '?client_id=' . env('GOOGLE_CLIENT_ID') .
             '&redirect_uri=' . env('GOOGLE_REDIRECT_URI') .
             '&response_type=code' .
             '&prompt=select_account consent' .
             '&scope=openid email profile' .
-            '&access_type=offline';
-
-        return !blank($state) ? $url . '&state=' . $state : $url;
+            '&access_type=offline' .
+            '&state=' . $state;
     }
 
     /**
@@ -40,11 +39,11 @@ class GoogleAuthService
     public function getAccessToken(string $code)
     {
         $response = Http::asForm()->post(self::TOKEN_URL, [
-            'code'          => $code,
-            'client_id'     => env('GOOGLE_CLIENT_ID'),
+            'code' => $code,
+            'client_id' => env('GOOGLE_CLIENT_ID'),
             'client_secret' => env('GOOGLE_CLIENT_SECRET'),
-            'redirect_uri'  => env('GOOGLE_REDIRECT_URI'),
-            'grant_type'    => 'authorization_code',
+            'redirect_uri' => env('GOOGLE_REDIRECT_URI'),
+            'grant_type' => 'authorization_code',
         ]);
 
         return $response['access_token'];
