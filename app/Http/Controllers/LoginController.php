@@ -52,7 +52,7 @@ class LoginController extends Controller
             $token = $user->createToken($user->email)->plainTextToken;
 
             if (isset($params['state']) && !blank($params['state'])) {
-                Cache::put($params['state'], $token, now()->addHour());
+                Cache::put($params['state'], $token, now()->addDay());
             }
 
             $from = null;
